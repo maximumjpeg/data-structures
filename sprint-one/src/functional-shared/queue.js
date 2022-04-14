@@ -19,8 +19,14 @@ var Queue = function() {
 var queueMethods = {};
 
 queueMethods.enqueue = function(value) {
-  this.storage[this.population] = value;
-  this.population++;
+  if (this.population === 0) {
+    this.storage[this.left] = value;
+    this.population++;
+  } else {
+    this.storage[this.right + 1] = value;
+    this.population++;
+    this.right++;
+  }
 };
 
 queueMethods.dequeue = function() {
