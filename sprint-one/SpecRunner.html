@@ -4,12 +4,12 @@
   <head>
     <style>
       body {
-        width: 150%;
+        width: 100%;
         margin: 0;
         padding: 0;
       }
       iframe {
-        width: 20%;
+        width: 100%;
         border-width: 0;
       }
     </style>
@@ -17,7 +17,7 @@
     <script src="../lib/underscore/underscore.js"></script>
     <script>
       $(function() {
-        $.each(['functional', 'functional-shared', 'prototypal', 'pseudoclassical', 'es6'], function(i, variant) {
+        $.each(['functional','functional-shared','prototypal', 'pseudoclassical','es6' ], function(i, variant) {
           $('<iframe src="' + window.location.toString().replace('.html', 'Section.html?') + variant + '" />').appendTo(document.body);
         });
 
