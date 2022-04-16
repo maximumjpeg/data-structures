@@ -17,28 +17,20 @@ treeMethods.addChild = function(value) {
 };
 
 treeMethods.contains = function(target) {
-  // does called on tree contain target
+  // check called on node for target
   if (this.value === target) {
-    // if so, return true
     return true;
   }
-  // target not in called on tree
-  // does called on tree have children?
-  // if so...
+  // if called on node HAS children
   if (this.children.length > 0) {
-    // iterate through this.children
+    // iterate through children
     for (var i = 0; i < this.children.length; i++) {
-      // if item (tree) has children
-      if (this.children[i].children.length > 0) {
-        // recurse this fn call
-        this.children[i].contains(target);
-        // item (tree) has no children
-        if (this.children[i].length === 0) {
-          // check current tree for target
-          if (this.children[i].value === target) {
-            return true;
-          }
-        }
+      console.log('current node\'s value: ', this.children[i].value);
+      var child = this.children[i];
+      // If child node contains target
+      if (child.contains(target)) {
+        // return true
+        return true;
       }
     }
   }
@@ -48,4 +40,5 @@ treeMethods.contains = function(target) {
 
 /*
  * Complexity: What is the time complexity of the above functions?
+  O(n)
  */
