@@ -7,7 +7,7 @@ var LinkedList = function() {
 
   list.addToTail = function(value) {
   // If population is zero
-    if (list.population === 0) {
+    if (!list.head) {
       // Add first node
       list[1] = Node(value);
       // update list.head
@@ -16,15 +16,16 @@ var LinkedList = function() {
       list.tail = list[1];
     // Else
     } else {
-      // Add next node
+      // Add another node
       list[list.population + 1] = Node(value);
-      // update list.tail
-      list.tail = list[list.population + 1];
       // update previous node's nextNode reference
       list[list.population].next = list[list.population + 1];
+      // update list.tail
+      list.tail = list[list.population + 1];
     }
     // Increment population +1
     list.population++;
+    // console.log('population: ', list.population);
   };
 
   list.removeHead = function() {
@@ -33,28 +34,46 @@ var LinkedList = function() {
       // capture head node's value as return variable
       var removedVal = list.head.value;
       // update list.head to deleted head nodes nextNode
-
-    // delete head node
-    // return the return variable
+      list.head = list.head.next;
+      // delete head node
+      delete list[1];
+      // return the return variable
+      return removedVal;
     }
-  // If population is 1
-    // capture solo nodes value as return variable
-    // delete solo node
-    // update head to null
-    // update tail to null
-    // return the return variable
-  // decrement population by 1 (might have to population check that)
+    // If population is 1
+    if (list.population === 1) {
+      // capture solo nodes value as return variable
+      var removedVal = list[1].value;
+      // delete solo node
+      delete list[1];
+      // update head to null
+      list.head = null;
+      // update tail to null
+      list.tail = null;
+      // return the return variable
+      return removedVal;
+    }
+    // decrement population by 1 (might have to population check that)
+    list.population--;
   };
 
   list.contains = function(target) {
-  // iterate through list
-    // for each item
-    // check value for === to target
-    // if equivalency => return true
-    // if !equivalency => false
-
+    // iterate through list
+    for (var key in list) {
+      // check value for === to target
+      var isFound = false;
+      if (list[key].value === target) {
+        // if equivalency => return true
+        isFound = true;
+        return isFound;
+      }
+    }
+    if (!isFound) {
+      return isFound;
+    }
+    // return false;
   };
-
+  // return linked list!
   return list;
 };
 
