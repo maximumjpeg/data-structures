@@ -25,7 +25,6 @@ treeMethods.contains = function(target) {
   if (this.children.length > 0) {
     // iterate through children
     for (var i = 0; i < this.children.length; i++) {
-      console.log('current node\'s value: ', this.children[i].value);
       var child = this.children[i];
       // If child node contains target
       if (child.contains(target)) {
