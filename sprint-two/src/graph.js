@@ -52,10 +52,15 @@ Graph.prototype.removeNode = function(node) {
 
 // Returns a boolean indicating whether two specified nodes are connected.  Pass in the values contained in each of the two nodes.
 Graph.prototype.hasEdge = function(fromNode, toNode) {
-  // If toNode[fromNode] of fromNode[toNode] exists
-  // return true
-  console.log('neighbor array of toNode: ', this.storage[toNode].neighbors);
-  if (this.storage[toNode].neighbors.includes(fromNode) && this.storage[fromNode].neighbors.includes(toNode)) {
+
+  // console.log('fromNode', fromNode);
+  // console.log('fromNode\'s neighbors:', this.storage[fromNode].neighbors);
+  // console.log('fromNode includes toNode as a neighbor', this.storage[fromNode].neighbors.includes(toNode));
+  // console.log('toNode', toNode);
+  // console.log('toNode\'s neighbors:', this.storage[toNode].neighbors);
+  // console.log('toNode includes fromNode as a neighbor', this.storage[toNode].neighbors.includes(fromNode));
+  // if fromNode & toNode have each other as neighbors => true: else => false
+  if (this.storage[fromNode].neighbors.includes(toNode) && this.storage[toNode].neighbors.includes(fromNode)) {
     return true;
   } else {
     return false;
@@ -65,9 +70,16 @@ Graph.prototype.hasEdge = function(fromNode, toNode) {
 // Connects two nodes in a graph by adding an edge between them.
 Graph.prototype.addEdge = function(fromNode, toNode) {
   // update -> fromNode[neighbors] = toNode
-  this.storage[fromNode].neighbors.push(toNode);
-  this.storage[toNode].neighbors.push(fromNode);
+  this.storage[fromNode].neighbors.push(Number(toNode));
+  // console.log('adding edge between ', fromNode, ' and ', toNode);
+  // console.log('fromNode is storing ', toNode);
+  // console.log('current state of fromNode:');
+  // console.table(this.storage[fromNode]);
   // update -> toNode[neighbors] = fromNode
+  this.storage[toNode].neighbors.push(Number(fromNode));
+  // console.log('toNode is storing ', fromNode);
+  // console.log('current state of toNode:');
+  // console.table(this.storage[toNode]);
 };
 
 // Remove an edge between any two specified (by value) nodes.
@@ -83,11 +95,13 @@ Graph.prototype.removeEdge = function(fromNode, toNode) {
 // Pass in a callback which will be executed on each node of the graph.
 Graph.prototype.forEachNode = function(cb) {
   // for in loop, iterate through graph object's storage object
-  for (var key in this.storage) {
-    // console.log('current node\'s value ', key);
+  for (var node in this.storage) {
+    // console.log('current node\'s value ', node);
     // call cb fn on each node object
-    cb(this.storage[key]);
+    cb(node);
   }
+  // testing other iteration patterns to try and debug
+
 };
 
 /*
