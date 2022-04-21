@@ -6,7 +6,7 @@ var HashTable = function() {
 };
 
 HashTable.prototype.insert = function(k, v) {
-  // if same exact key, overwrite with new value
+  // // if same exact key, overwrite with new value
   var index = getIndexBelowMaxForKey(k, this._limit);
   // empty object here
   if (this._storage[index] !== undefined) {
@@ -17,22 +17,31 @@ HashTable.prototype.insert = function(k, v) {
     this._storage[index][k] = v;
   }
 
+  // if (!!this._storage[index]) {
+  //   this._storage[index] = {k: v};
+  // } else {
+  //   this._storage[index][k] = v;
+  // }
 };
 
 HashTable.prototype.retrieve = function(k) {
   var index = getIndexBelowMaxForKey(k, this._limit);
-  if (this._storage.includes(k)) {}
+  console.table(this._storage);
+  console.log('index', index);
+  console.log('variable k:', k);
+  return this._storage[index][k];
 };
 
 HashTable.prototype.remove = function(k) {
   var index = getIndexBelowMaxForKey(k, this._limit);
+  this._storage[index][k] = undefined;
 };
 
 
 
 /*
  * Complexity: What is the time complexity of the above functions?
-    O(1) or O(n)?
+    O(1)???
  */
 
 
