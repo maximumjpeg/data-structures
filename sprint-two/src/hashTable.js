@@ -26,9 +26,9 @@ HashTable.prototype.insert = function(k, v) {
 
 HashTable.prototype.retrieve = function(k) {
   var index = getIndexBelowMaxForKey(k, this._limit);
-  console.table(this._storage);
-  console.log('index', index);
-  console.log('variable k:', k);
+  // console.table(this._storage);
+  // console.log('index', index);
+  // console.log('variable k:', k);
   return this._storage[index][k];
 };
 
